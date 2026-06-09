@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ================= BACKGROUND ================= */
+
+/* upload */
+.bg-upload::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('/static/bg-upload.jpg') no-repeat center center/cover;
+    filter: blur(6px);
+    z-index: -2;
+}
+/* ===== NAVBAR ===== */
+.navbar-custom {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: #0c3257;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.logo-full {
+    height: 45px;
+}
+
+.nav-right {
+    color: white;
+    font-size: 24px;
+}
+
+/* hasil */
+.bg-hasil::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('/static/bg-hasil.jpg') no-repeat center center/cover;
+    filter: blur(6px);
+    z-index: -2;
+}
+
+/* ================= INDEX ================= */
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    text-align: center;
+}
+
+.main-title {
+    font-weight: bold;
+    color: #0c3257;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.subtitle {
+    color: #36517b;
+}
+
+/* ================= GLOBAL ================= */
+
+.card {
+    border-radius: 15px;
+    background: white;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.btn-custom {
+    background: #0c3257;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 8px 15px;
+}
+
+.btn-custom:hover {
+    background: #ffe226;
+    color: #0c3257;
+}
+
+.alert {
+    background: #ffe6e6;
+    color: #b30000;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* ================= TABLE ================= */
+
+th {
+    background: #0c3257;
+    color: white;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+tr:hover {
+    background-color: #f1f6fb;
+}
+
+.jumlah-row {
+    background-color: #e6edf5 !important;
+    font-weight: bold;
+}
+
+/* dropdown di hasil.html */
+.collapse-icon {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+.card-header:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+

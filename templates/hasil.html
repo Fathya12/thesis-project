@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hasil RL 5.1</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+     <!-- Bootstrap Icons -->
+     <link
+     rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+   />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="bg-hasil">
+    <div class="container mt-4">
+      <!-- HEADER -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="main-title">Hasil Konversi RL 5.1</h2>
+        <a href="/" class="btn btn-custom">Upload Ulang</a>
+      </div>
+
+      {% for kode, isi in hasil.items() %}
+      <div class="card mb-4">
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+          role="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapse-{{ loop.index }}"
+          aria-expanded="false"
+          aria-controls="collapse-{{ loop.index }}"
+          style="cursor: pointer"
+        >
+          <h5 class="mb-0">Kode ICD: <b>{{ kode }}</b></h5>
+          <span class="collapse-icon">▼</span>
+        </div>
+
+        <div id="collapse-{{ loop.index }}" class="collapse">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Golongan Umur</th>
+                    <th>Laki-laki</th>
+                    <th>Perempuan</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for row in isi.data %}
+                  <tr>
+                    <td>{{ row.no }}</td>
+                    <td>{{ row.umur }}</td>
+
+                    <td>
+                      {% if row.laki != 0 %}<b>{{ row.laki }}</b>{% else %}{{
+                      row.laki }}{% endif %}
+                    </td>
+                    <td>
+                      {% if row.perempuan != 0 %}<b>{{ row.perempuan }}</b>{%
+                      else %}{{ row.perempuan }}{% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+
+                  <tr class="jumlah-row">
+                    <td colspan="2">Jumlah Kunjungan Pasien</td>
+                    <td>{{ isi.jumlah_l }}</td>
+                    <td>{{ isi.jumlah_p }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="text-end mt-3">
+              <a href="/download/{{ kode }}" class="btn btn-custom btn-sm">
+                  Download Excel
+                  <i class="bi bi-arrow-down-circle-fill ms-2"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <script>
+      document
+        .querySelectorAll('[data-bs-toggle="collapse"]')
+        .forEach(function (header) {
+          header.addEventListener(
+            "shown.bs.collapse",
+            function () {
+              header.querySelector(".collapse-icon").style.transform =
+                "rotate(180deg)";
+            },
+            true
+          );
+          header.addEventListener(
+            "hidden.bs.collapse",
+            function () {
+              header.querySelector(".collapse-icon").style.transform =
+                "rotate(0deg)";
+            },
+            true
+          );
+
+          // listen on the target collapse element, not the button
+          const target = document.querySelector(
+            header.getAttribute("data-bs-target")
+          );
+          target.addEventListener("shown.bs.collapse", function () {
+            header.querySelector(".collapse-icon").style.transform =
+              "rotate(180deg)";
+          });
+          target.addEventListener("hidden.bs.collapse", function () {
+            header.querySelector(".collapse-icon").style.transform =
+              "rotate(0deg)";
+          });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
